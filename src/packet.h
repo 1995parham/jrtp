@@ -14,18 +14,14 @@
 #ifndef packet_h
 #define packet_h
 
+#include <inttypes.h>
+
 struct rtp_packet {
 	uint8_t *payload;
 	uint16_t sequence_number;
 	uint32_t ssrc;
 	uint32_t timestamp;
 };
-
-
-struct rtp_packet *create_rtp_packet(void);
-
-struct rtp_packet *create_rtp_packet_with_parameters(uint8_t *payload,
-		uint16_t sequence_number, uint32_t ssrc, uint32_t timestamp);
 
 int rtp_packet_serialize(const struct rtp_packet *p, uint8_t *buff);
 
