@@ -1,0 +1,28 @@
+{
+  "name": "artp",
+  "keywords": "",
+  "description": "Arduino RTP Implementation. RFC 3550",
+  "repository":
+  {
+    "type": "git",
+    "url": "https://github.com/1995parham/artp"
+  },
+  "authors":
+  [
+    {
+      "name": "Parham Alvani",
+      "email": "parham.alvani@gmail.com",
+      "url": "http://1995parham.github.io/",
+      "maintainer": true
+    }
+  ],
+  "dependencies":
+  {
+    "name": "OneWire",
+    "authors": "Paul Stoffregen",
+    "frameworks": "arduino"
+  },
+  "version": "1.0",
+  "frameworks": "arduino",
+  "platforms": "*"
+}
