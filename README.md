@@ -1,2 +1,4 @@
-# artp
-Arduino RTP Implementation. RFC 3550
+# jrtp
+
+## Introduction
+RealTime Protocol implementation based on [RFC 3550](https://tools.ietf.org/html/rfc3550) in Arduino with C :yum:.
