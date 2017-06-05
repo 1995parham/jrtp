@@ -15,7 +15,7 @@
 
 #include "RTPPacket.h"
 
-RTPPacket::RTPPacket(uint8_t *payload, uint16_t sequenceNumber, uint32_t ssrc, uint32_t timestamp, uint8_t payloadType){
+RTPPacket::RTPPacket(const uint8_t *payload, uint16_t sequenceNumber, uint32_t ssrc, uint32_t timestamp, uint8_t payloadType){
 	this->payload = payload;
 	this->sequenceNumber = sequenceNumber;
 	this->ssrc = ssrc;
@@ -56,7 +56,7 @@ int RTPPacket::deserialize(const uint8_t *buff)
 {
 }
 
-uint8_t *RTPPacket::getPayload() const
+const uint8_t *RTPPacket::getPayload() const
 {
 	return this->payload;
 }
