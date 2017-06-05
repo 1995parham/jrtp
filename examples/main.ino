@@ -1,6 +1,7 @@
 #include <SPI.h>
 #include <Ethernet.h>
 #include <EthernetUdp.h>
+#include <RTPPacket.h>
 
 
 // Enter a MAC address and IP address for your controller below.
@@ -24,8 +25,10 @@ void setup() {
 }
 
 void loop() {
+	RTPPacket("Hello", 0, 0).serialize(packetBuffer);
+
 	Udp.beginPacket(ip(192, 168, 73, 2), 1373);
-	Udp.write();
+	Udp.write(packetBuffer);
 	Udp.endPacket();
 
 	delay(10);
