@@ -22,13 +22,12 @@ class RTPPacket {
 		RTPPacket(uint8_t *payload, uint16_t sequenceNumber, uint32_t ssrc) : RTPPacket(payload, sequenceNumber, ssrc, 0, 95) {};
 		RTPPacket(uint8_t *payload, uint16_t sequenceNumber, uint32_t ssrc, uint32_t timestamp, uint8_t payloadType);
 		RTPPacket(const RTPPacket& src) = default;
-		
+
 		int serialize(uint8_t *buff) const;
 		int deserialize(const uint8_t *buff);
 
 		uint8_t *getPayload() const;
 		void setPayload(uint8_t *payload);
-		
 
 	private:
 		uint8_t *payload;
