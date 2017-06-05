@@ -46,6 +46,7 @@ int RTPPacket::serialize(uint8_t *buff) const
 	int i = 0;
 	while (this->payload[i] != 0) {
 		buff[12 + i] = this->payload[i];
+		i++;
 	}
 	buff[12 + i] = 0;
 
