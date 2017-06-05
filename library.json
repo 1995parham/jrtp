@@ -1,7 +1,7 @@
 {
-  "name": "artp",
+  "name": "jrtp",
   "keywords": "",
-  "description": "Arduino RTP Implementation. RFC 3550",
+  "description": "Arduino implementation of rtp protocol. RFC 3550",
   "repository":
   {
     "type": "git",
