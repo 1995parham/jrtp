@@ -16,12 +16,6 @@
       "maintainer": true
     }
   ],
-  "dependencies":
-  {
-    "name": "OneWire",
-    "authors": "Paul Stoffregen",
-    "frameworks": "arduino"
-  },
   "version": "1.0",
   "frameworks": "arduino",
   "platforms": "*"
