@@ -11,8 +11,8 @@
 /*
  * Copyright (c) 2017 Parham Alvani.
 */
-#ifndef packet_h
-#define packet_h
+#ifndef RTPPacket_h
+#define RTPPacket_h
 
 #include <inttypes.h>
 
