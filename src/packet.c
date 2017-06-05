@@ -40,6 +40,7 @@ int rtp_packet_serialize(const struct rtp_packet *p, uint8_t *buff)
 	while (p->payload[i] != 0) {
 		buff[12 + i] = p->payload[i];
 	}
+	buff[12 + i] = 0;
 
 	return i + 12;
 }
