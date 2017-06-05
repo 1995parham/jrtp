@@ -35,6 +35,11 @@ int rtp_packet_serialize(const struct rtp_packet *p, uint8_t *buff)
 	buff[9] = p->ssrc >> 16;
 	buff[10] = p->ssrc >> 8;
 	buff[11] = p->ssrc;
+	
+	int i = 0;
+	while (p->payload[i] != 0) {
+		buff[12 + i] = p->payload[i];
+	}
 }
 
 int rtp_packet_deserialize(struct rtp_packet *p, const uint8_t *buff)
