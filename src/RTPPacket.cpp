@@ -16,6 +16,11 @@
 #include "RTPPacket.h"
 
 RTPPacket::RTPPacket(uint8_t *payload, uint16_t sequenceNumber, uint32_t ssrc, uint32_t timestamp, uint8_t payloadType){
+	this->payload = payload;
+	this->sequenceNumber = sequenceNumber;
+	this->ssrc = ssrc;
+	this->timestamp = timestamp;
+	this->payloadType = payloadType;
 }
 
 int RTPPacket::serialize(uint8_t *buff) const
@@ -37,7 +42,7 @@ int RTPPacket::serialize(uint8_t *buff) const
 	buff[9] = this->ssrc >> 16;
 	buff[10] = this->ssrc >> 8;
 	buff[11] = this->ssrc;
-	
+
 	int i = 0;
 	while (this->payload[i] != 0) {
 		buff[12 + i] = this->payload[i];
