@@ -27,7 +27,7 @@ void setup() {
 void loop() {
 	RTPPacket("Hello", 0, 0).serialize(packetBuffer);
 
-	Udp.beginPacket(ip(192, 168, 73, 2), 1373);
+	Udp.beginPacket(IPAddress(192, 168, 73, 2), 1373);
 	Udp.write(packetBuffer);
 	Udp.endPacket();
 
