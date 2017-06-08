@@ -37,7 +37,7 @@ int RTPPacket::serialize(uint8_t *buff) const
 	buff[5] = this->timestamp >> 16;
 	buff[6] = this->timestamp >> 8;
 	buff[7] = this->timestamp;
-	/* buff[4, 5, 6, 7] = SSRC */
+	/* buff[8, 9, 10, 11] = SSRC */
 	buff[8] = this->ssrc >> 24;
 	buff[9] = this->ssrc >> 16;
 	buff[10] = this->ssrc >> 8;
@@ -53,8 +53,22 @@ int RTPPacket::serialize(uint8_t *buff) const
 	return i + 12;
 }
 
-int RTPPacket::deserialize(const uint8_t *buff)
+int RTPPacket::deserialize(const uint8_t *buff, int length)
 {
+	/* buff[0] = (V << 6 | P << 5 | X << 4 | CC) */
+	if (buff[0] & 0xC0 >> 6 != 2) {
+		return 0;
+	}
+	/* buff[1] = (M << 7 | PT) */
+	this->payloadType = (buff[1] & 0x7F);
+	/* buff[2, 3] = SN */
+	this->sequenceNumber = buff[2] << 8 | buff[3];
+	/* buff[4, 5, 6, 7] = TS */
+	this->timestamp = buff[4] << 24 | buff[5] << 16 | buff[6] << 8 | buff[7];
+	/* buff[8, 9, 10, 11] = SSRC */
+	this->ssrc = buff[8] << 24 | buff[9] << 16 | buff[10] << 8 | buff[11];
+
+	return length;
 }
 
 const uint8_t *RTPPacket::getPayload() const
