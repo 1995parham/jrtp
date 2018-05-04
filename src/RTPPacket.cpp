@@ -15,12 +15,13 @@
 
 #include "RTPPacket.h"
 
-RTPPacket::RTPPacket(const uint8_t *payload, uint16_t sequenceNumber, uint32_t ssrc, uint32_t timestamp, uint8_t payloadType){
+RTPPacket::RTPPacket(const uint8_t *payload, uint16_t sequenceNumber, uint32_t ssrc, uint32_t timestamp, uint8_t payloadType, int payloadLength){
 	this->payload = payload;
 	this->sequenceNumber = sequenceNumber;
 	this->ssrc = ssrc;
 	this->timestamp = timestamp;
 	this->payloadType = payloadType;
+    this->payloadLength = payloadLength;
 }
 
 int RTPPacket::serialize(uint8_t *buff) const
@@ -43,12 +44,20 @@ int RTPPacket::serialize(uint8_t *buff) const
 	buff[10] = this->ssrc >> 8;
 	buff[11] = this->ssrc;
 
-	int i = 0;
-	while (this->payload[i] != 0) {
-		buff[12 + i] = this->payload[i];
-		i++;
-	}
-	buff[12 + i] = 0;
+	int i = this->payloadLength;
+    if (i == 0) {
+	    while (this->payload[i] != 0) {
+		    buff[12 + i] = this->payload[i];
+		    i++;
+	    }
+	    buff[12 + i] = 0;
+    } else {
+        int j;
+        for (j = 0; j < i; j++) {
+            buff[12 + j] = this->payload[j];
+        }
+        buff[12 + j] = 0;
+    }
 
 	return i + 12;
 }
